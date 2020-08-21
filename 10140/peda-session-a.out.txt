@@ -1,0 +1,2 @@
+break /home/zoo868e/Desktop/ACM/10140/main.c:12
+

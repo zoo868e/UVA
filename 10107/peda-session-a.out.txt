@@ -1,0 +1,3 @@
+break /home/zoo868e/Desktop/ACM/10107/main.c:9
+break /home/zoo868e/Desktop/ACM/10107/main.c:13
+

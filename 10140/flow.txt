@@ -1,0 +1,17 @@
+step 1
+找到sqrt(2**31)以內所有質數，放在prime[]裡面
+因為大於該數時，若非質數，必定有因數在sqrt(2**31)內
+且該因數必定可以透過找到的質數組成
+
+step 2
+透過迴圈讀入L及U
+
+	step 2-1
+	迴圈檢查L~U所有數是否為質數，是的數存入ans[]內
+
+	step 2-2
+	迴圈遍歷ans[]，當有連續兩數之差小於min則更新min及pmin，大於max則更新max及pmax
+
+	step 2-3
+	若min或max未更動則印出"There are no adjacent primes."
+	否則印出 ans[pmin],ans[pmin+1] are closest, ans[pmax],ans[pmax] are most distant.
