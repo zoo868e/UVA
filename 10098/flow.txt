@@ -1,0 +1,11 @@
+step 1
+scan int n
+
+step 2-1
+scan input char a[]
+
+step 2-2
+sort a[] in ascending
+
+step 3
+print all permutation of a[]
