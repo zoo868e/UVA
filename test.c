@@ -1,10 +1,9 @@
 #include<stdio.h>
+#include<string.h>
 
 int main(){
-	long int x;
-	long int prime[214783647];
-	for(x = 2;x<214783647;x++){
-		
-}
+    int a[10];
+    memset(a,1,sizeof(a));
+    printf("%ld\n",strlen(a));
 	return 0;
 }
