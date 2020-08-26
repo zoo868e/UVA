@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <string.h>
 
 void ans();
@@ -15,7 +16,6 @@ int forans[10][10],ansnum[10];
 int main(){
 	int fp,ffp;
 	genans();
-	for(fp = 0;fp < 10;fp ++)for(ffp = 0;ffp < 10;ffp++)printf("forans[%d][%d] = %d\n",fp,ffp,forans[fp][ffp]);
 	scanf("%s %s",m,n);
 	while(check(n,m)){
 		ans();
@@ -28,13 +28,20 @@ void ans()
 {
 	int fp,a = m[strlen(m)-1]-'0';
 	int i = ansnum[a];
-	int x = n[strlen(n)-1]-'0' + (n[strlen(n)-2]-'0')*10 + (n[strlen(n)-3]-'0')*100;
+	int x = 0;
+    for(fp = 0;(fp < 2) && (strlen(n) > fp);fp++){
+        x = x + (n[strlen(n)-fp-1] - '0')*pow(10,fp);
+    }
+    if(x == 0){
+        printf("1\n");
+        return;
+    }
 	printf("%d\n",forans[a][x%i]);
 }
 
 int check(char n[],char m[])
 {
-	if(((n[strlen(n)-1] - '0') == 0) && ((m[strlen(m)-1] - '0') == 0))return 0;
+	if(((n[0] - '0') == 0) && ((m[0] - '0') == 0))return 0;
 	return 1;
 }
 
