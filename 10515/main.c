@@ -18,18 +18,17 @@ int ansnumm[10] = {1,1,4,4,2,1,1,4,4,2};
 
 int main(){
 	int fp,ffp;
-    char m[101],n[101];
+	char m[101],n[101];
 	while(scanf("%s %s",m,n)&&((n[0] != '0') || (m[0] != '0'))){
-        int x = 0;
-		for(fp = 0;(fp < 2) && (strlen(n) > fp);fp++){
-            x = x + (n[strlen(n)-fp-1] - '0')*pow(10,fp);
-        }
-        if(x == 0){
-            printf("1\n");
-            continue;
-        }
-        printf("%d\n",anss[m[strlen(m)-1] - '0'][x % ansnumm[m[strlen(m)-1] - '0']]);
-		
-	}
+        	int x = 0,nlen = strlen(n),mlen = strlen(m);
+		for(fp = 0;(fp < 2) && (fp < nlen);fp++){
+        	    x = x + (n[nlen-fp-1] - '0')*pow(10,fp);
+		    }
+        	if(x == 0){
+        	    printf("1\n");
+        	    continue;
+        	}
+        	printf("%d\n",anss[m[mlen-1] - '0'][x % ansnumm[m[mlen-1] - '0']]);
+}
 	return 0;
 }
