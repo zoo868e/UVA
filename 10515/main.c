@@ -21,13 +21,13 @@ int main(){
 	char m[101],n[101];
 	while(scanf("%s %s",m,n)&&((n[0] != '0') || (m[0] != '0'))){
         	int x = 0,nlen = strlen(n),mlen = strlen(m);
-		for(fp = 0;(fp < 2) && (fp < nlen);fp++){
+		if(!strcmp(m,"0")){
+			printf("1\n");
+			continue;
+		}
+		for(fp = 0;(fp < 3) && (fp < nlen);fp++){
         	    x = x + (n[nlen-fp-1] - '0')*pow(10,fp);
 		    }
-        	if(x == 0){
-        	    printf("1\n");
-        	    continue;
-        	}
         	printf("%d\n",anss[m[mlen-1] - '0'][x % ansnumm[m[mlen-1] - '0']]);
 }
 	return 0;
