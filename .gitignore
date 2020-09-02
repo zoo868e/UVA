@@ -1,4 +1,6 @@
 *.out
+*.o
+*.sh
 test.c
 steal_uva_testdata/
 test/
