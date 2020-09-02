@@ -4,6 +4,6 @@
 mk(){
 	mkdir -p "$1"
 	cd "$1"
-	cp ~/UVA/main.c main.c
-	cp ~/UVA/makefile makefile
+	cp ~/Desktop/UVA/main.c main.c
+	cp ~/Desktop/UVA/makefile makefile
 }
