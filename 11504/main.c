@@ -1,63 +1,88 @@
 #include <stdio.h>
 #include <string.h>
 
-int del();
-int answer();
 
+int status[100000];	/*down = 0,stand = 1,push = 2*/
 
+void reduce();
 
 int main(){
-	int n,m,testcase,temp,ntemp,domino[100000],set[100000];
+	int n,m,testcase,temp,ntemp,wp,fp;
+	status[0] = 0;
 	scanf("%d",&testcase);
 	while(testcase--){
 		scanf("%d%d",&n,&m);
-		for(int fp = 0;fp < n;fp++)domino[fp] = 1;
-		while(m--){
+		int link[2*m+10];
+		memset(link,0,sizeof(link));
+		wp = m;
+		status[0] = 0;
+		int inlink = 0;
+		for(fp = 1;fp <= n;fp++)status[fp] = 1;
+		while(wp--){
 			scanf("%d%d",&temp,&ntemp);
-			domino[ntemp] = domino[ntemp] & 0;
+			link[inlink] = temp;
+			link[inlink+1] = ntemp;
+			inlink += 2;
+			/*printf("link[%d][%d] = %d\n",temp,inlink,link[temp][inlink]);*/
 		}
+		reduce(link,n+1,m);
 		int fp,count = 0;
-		for(fp = 1;fp < n;fp++)
-			if(domino[fp] == 1)count++;
+		for(fp = 1;fp <= n;fp++)
+			/*printf("status[%d] = %d\n",fp,status[fp]);*/
+			if(status[fp] > 0)count++;
 		printf("%d\n",count);
 	}
 	return 0;
 }
 
-/*int answer(int domino[],int count,int len)
+void reduce(int link[],int n,int m)
 {
-	while(len--){
-		printf("now at domino[%d] = %d\n",len,domino[len]);
-		if(domino[len] > 0){
-			if(del(domino,len) > 0)count++;
-		}
-	}
-	return count;
-}
+	int wp = 0,temp,fp,c;
+	while(wp < 2*m+10){
+			c = link[wp];
+			wp++;
+			temp = link[wp];
+			wp++;
+			/*printf("c = %d,temp = %d\n",c,temp);*/
+			/*if c's status is stand, set the status[c] to push and status[temp] to down*/
+			/*if c's status is down, set status[temp] to down*/
+			/*if c's status is push, set status[temp] to down*/
+	
+			if(temp == 0){
+				break;
+			}
+			/*printf("link[%d][%d] = %d\n",c,fp,temp);
+			printf("status[%d] = %d\n",c,status[c]);
+			printf("status[%d] = %d\n",temp,status[temp]);*/
 
-int del(int domino[],int posi,int start)
-{
-	int temp = domino[posi];
-	printf("posi = %d temp = %d\n",posi,temp);
-	if(temp == 0){
-		domino[posi] = -1;
-		printf("count++ at domino[%d]\n",posi);
-		return 1;
-	}
-	else if(temp == -1 || temp == start){
-		domino[posi] = -1;
-		return -1;
-	}
-	else if(temp == -2){
-		domino[posi] = -1;
-		printf("count++ at domino[%d]\n",posi);
-		return 1;
-	}
-	else{
-		domino[posi] = -2;
-		if(del(domino,temp)){
-			return 1;
+			/*c is down*/
+			if(status[c] == 0){
+				/*temp is stand*/
+				if(status[temp] == 1){
+					status[temp] = 0;
+					continue;
+				}
+				else{
+					continue;
+				}
+			}
+			/*c is stand*/
+			if(status[c] == 1){
+				/*temp is down*/
+				if(status[temp] == 0){
+					continue;
+				}
+				else{
+					status[c] = 2;
+					status[temp] = 0;
+					continue;
+				}
+			}
+			/*c is push*/
+			if(status[c] == 2){
+				status[temp] = 0;
+				continue;
+			}
 		}
-		else return -1;
-	}
-}*/
+	
+}
