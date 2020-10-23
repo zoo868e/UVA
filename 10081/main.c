@@ -9,8 +9,8 @@ int main(void){
 		for(number = 0;number <= k;number++)dp[1][number] = 1;
 		for(digit = 2;digit <= n;digit++){
 			for(number = 0; number <= k; number++){
-				if(number == 0)dp[digit][number] = dp[digit - 1][0] + dp[digit - 1][1];
-				else if(number == k)dp[digit][number] = dp[digit - 1][k-1] + dp[digit - 1][k];
+				if(number == 0)dp[digit][number] = dp[digit - 1][0] +dp[digit - 1][1];
+				else if(number == k)dp[digit][number] = dp[digit - 1][k-1] +dp[digit - 1][k];
 				else for(temp = number - 1; temp <= number + 1; temp++)dp[digit][number] += dp[digit - 1][temp];
 }
 }
