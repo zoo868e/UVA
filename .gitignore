@@ -6,3 +6,5 @@ steal_uva_testdata/
 test/
 .vimrc
 macro.sh
+in.*
+*.in
